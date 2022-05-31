@@ -98,7 +98,7 @@ resource "google_container_cluster" "primary" {
       }
     }
   }
-  
+
   vertical_pod_autoscaling {
     enabled = var.enable_vertical_pod_autoscaling
   }
@@ -198,7 +198,6 @@ resource "google_container_cluster" "primary" {
   }
 
   maintenance_policy {
-  {% if beta_cluster %}
     dynamic "recurring_window" {
       for_each = local.cluster_maintenance_window_is_recurring
       content {
@@ -223,12 +222,6 @@ resource "google_container_cluster" "primary" {
         end_time       = maintenance_exclusion.value.end_time
       }
     }
-
-  {% else %}
-    daily_maintenance_window {
-      start_time = var.maintenance_start_time
-    }
-  {% endif %}
   }
 
   lifecycle {
