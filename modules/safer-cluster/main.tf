@@ -64,6 +64,9 @@ module "gke" {
   network_policy = true
 
   maintenance_start_time = var.maintenance_start_time
+  maintenance_end_time   = var.maintenance_end_time
+  maintenance_recurrence = var.maintenance_recurrence
+  maintenance_exclusions = var.maintenance_exclusions
 
   initial_node_count = var.initial_node_count
 
